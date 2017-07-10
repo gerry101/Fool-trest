@@ -1,6 +1,5 @@
 var Pin        = require('../models/pin'),
     middleware = require('../middleware'),
-    config     = require('../config'),
     multerS3   = require("multer-s3"),
     aws        = require("aws-sdk"),
     express    = require('express'),
@@ -8,8 +7,8 @@ var Pin        = require('../models/pin'),
     router     = express.Router();
 
 aws.config.update({
-    secretAccessKey: config.aws_secret_access_key,
-    accessKeyId: config.aws_access_key_id,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     region: 'us-east-2'
 });
 
@@ -18,7 +17,7 @@ var s3 = new aws.S3();
 var upload = multer({
     storage: multerS3({
         s3: s3,
-        bucket: config.s3_bucket_user,
+        bucket: process.env.S3_BUCKET_USER,
         key: function (req, file, cb) {
             var fileExtension = file.originalname.split(".")[1];
             var path = "uploads/" + req.user.twitterId + Date.now() + "." + fileExtension;
@@ -80,7 +79,7 @@ router.delete('/pin/:id', middleware.isLoggedIn, function(req, res) {
 
 function deleteFiles(imagePath) {
     s3.deleteObjects({
-        Bucket: config.s3_bucket_user,
+        Bucket: process.env.S3_BUCKET_USER,
         Delete: {
             Objects: [
                  { Key: imagePath },
