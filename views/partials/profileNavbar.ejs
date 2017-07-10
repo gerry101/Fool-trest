@@ -1,0 +1,37 @@
+<nav class="navbar navbar-toggleable-md navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="/" class="navbar-brand mt-1">
+            <strong>fool<em><strong>-</strong>trest</em></strong>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav mr-0">
+                <%if(currentUser) {%>
+                    <li class="nav-item mt-1">
+                        <a href="/pin/new">
+                            <i class="fa fa-plus" aria-hidden="true"></i> 
+                            New fool-pin
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img id="user-img" src="<%=currentUser.image%>" alt="user image">
+                        </a>
+                        <div class="dropdown-menu dropdown" aria-labelledby="profile-dropdown">
+                            <p><a href="/">Home</a></p>
+                            <p><a href="https://twitter.com/<%=currentUser.username%>" target="_blank" class="dropdown-item">Twitter</a></p>
+                            <p><a href="/logout">Logout</a></p>
+                        </div>
+                    </li>   
+                <%} else {%>
+                    <li class="nav-item">
+                        <a href="/auth/twitter" class="btn btn-info btn-sm"><span class="fa fa-twitter"></span> Twitter</a>
+                    </li>    
+                <%}%>
+            </ul>
+        </div>
+    </div>
+</nav>

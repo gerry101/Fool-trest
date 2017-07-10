@@ -1,0 +1,41 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div id="form-auth" class="col-md-4">
+            <form action="/pin" method="POST" enctype="multipart/form-data">
+                <div class="card-block">
+                    <div class="text-center">
+                        <h3><i class="fa fa-lock"></i> New Fool-Pin:</h3>
+                        <hr class="mt-2 mb-2">
+                    </div>
+                    <div class="md-form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <% var awspath = "https://s3.us-east-2.amazonaws.com/user-image-aws-bucket/" %>
+                            <% var placeholderPath = "uploads/593c64707e790917b46bda1b1497439339142.jpg" %>
+                            <img src="<%=awspath%><%=placeholderPath%>" class="img-fluid img-thumbnail" id="image">
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-1">Pin Avatar</h5>
+                            <input type="file" name="image" accept="image/*" onchange="loadFile(event)" class="form-control-file" id="file" aria-describedby="fileHelp">
+                            <small id="fileHelp" class="form-text text-muted">
+                            Please select an <strong>image</strong> that fool-trest's your desires.
+                            </small>
+                        </div>
+                    </div>
+                    <p><small><em><strong>*</strong>This image upload feature will be disabled on 8th of August 2017 due to hosting costs.</em></small></p>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-indigo">Create</button>
+                </div>
+                <hr>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<% include ../partials/imageFooter %>
