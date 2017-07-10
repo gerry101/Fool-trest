@@ -4,6 +4,7 @@ var TwitterStrategy = require('passport-twitter'),
     User            = require('./models/user'),
     flash           = require('connect-flash'),
     bodyParser      = require('body-parser'),
+    config          = require('./config'),
     mongoose        = require('mongoose'),
     passport        = require('passport'),
     express         = require('express'),
@@ -13,7 +14,7 @@ var indexRoutes = require('./routes/index'),
     pinRoutes   = require('./routes/pins');
 
 //fooltrest-pin
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect('mongodb://localhost/fooltrest-pin');
 
 app.locals.moment = require('moment');
 app.use(session({
@@ -24,9 +25,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new TwitterStrategy({
-    consumerKey: process.env.CONSUMER_KEY,
-    consumerSecret: process.env.CONSUMER_SECRET,
-    callbackURL: process.env.CALLBACK_URL
+    consumerKey: config.consumerKey,
+    consumerSecret: config.consumerSecret,
+    callbackURL: config.callbackURL
   },
   function(req, token, tokenSecret, profile, done) {
         process.nextTick(function() {
