@@ -13,19 +13,16 @@
                     <div class="md-form">
                     <div class="row">
                         <div class="col-md-6">
-                            <% var awspath = "https://s3.us-east-2.amazonaws.com/user-image-aws-bucket/" %>
-                            <% var placeholderPath = "uploads/593c64707e790917b46bda1b1497439339142.jpg" %>
-                            <img src="<%=awspath%><%=placeholderPath%>" class="img-fluid img-thumbnail" id="image">
+                            <img src="https://images.unsplash.com/photo-1502685904007-66914fdd9118?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9%0A&s=c8f1ba56615d946523bdce7c5b769bd9" class="img-fluid img-thumbnail" id="image">
                         </div>
                         <div class="col-md-6">
                             <h5 class="mb-1">Pin Avatar</h5>
-                            <input type="file" name="image" accept="image/*" onchange="loadFile(event)" class="form-control-file" id="file" aria-describedby="fileHelp">
+                            <input type="file" name="image" accept="image/*" onchange="loadFile(event)" class="form-control-file" id="file" aria-describedby="fileHelp" required>
                             <small id="fileHelp" class="form-text text-muted">
                             Please select an <strong>image</strong> that fool-trest's your desires.
                             </small>
                         </div>
                     </div>
-                    <p><small><em><strong>*</strong>This image upload feature will be disabled on 8th of August 2017 due to hosting costs.</em></small></p>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-indigo">Create</button>

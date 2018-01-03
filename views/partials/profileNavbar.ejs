@@ -4,13 +4,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a href="/" class="navbar-brand mt-1">
-            <strong>fool<em><strong>-</strong>trest</em></strong>
+            <%if(currentUser) {%>
+                <strong><%=currentUser.username%></strong>
+            <%} else {%>
+                <strong>fool<em><strong>-</strong>trest</em></strong>
+            <%}%>
         </a>
         <div class="collapse navbar-collapse" id="navbarNav1">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav mr-0">
                 <%if(currentUser) {%>
-                    <li class="nav-item mt-1">
+                    <li class="nav-item mr-3 mt-1">
                         <a href="/pin/new">
                             <i class="fa fa-plus" aria-hidden="true"></i> 
                             New fool-pin
@@ -21,7 +25,7 @@
                             <img id="user-img" src="<%=currentUser.image%>" alt="user image">
                         </a>
                         <div class="dropdown-menu dropdown" aria-labelledby="profile-dropdown">
-                            <p><a href="/">Home</a></p>
+                            <p><a href="/pins">Home</a></p>
                             <p><a href="https://twitter.com/<%=currentUser.username%>" target="_blank" class="dropdown-item">Twitter</a></p>
                             <p><a href="/logout">Logout</a></p>
                         </div>
@@ -30,7 +34,7 @@
                     <li class="nav-item">
                         <a href="/auth/twitter" class="btn btn-info btn-sm"><span class="fa fa-twitter"></span> Twitter</a>
                     </li>    
-                <%}%>
+                <% } %>
             </ul>
         </div>
     </div>

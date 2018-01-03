@@ -1,8 +1,7 @@
 <% include ../partials/header %>
 <% include ../partials/navbar %>
 
-<% var awspath = "https://s3.us-east-2.amazonaws.com/user-image-aws-bucket/" %>
-<% var defaultPath = "uploads/593c64707e790917b46bda1b1497439339142.jpg" %>
+<% var defaultPath = "https://images.unsplash.com/photo-1502685904007-66914fdd9118?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9%0A&s=c8f1ba56615d946523bdce7c5b769bd9" %>
 
 <div class="container mt-5">
   <div class="row">
@@ -14,9 +13,9 @@
                   <div class="ui">
                   </div>
                   <%if(pin.image === null || pin.image === undefined) {%>
-                    <img class="card-img" src="<%=awspath%><%=defaultPath%>" alt="pin image">
+                    <img class="card-img" src="<%=defaultPath%>" alt="pin image">
                   <%} else {%>
-                    <img class="card-img" src="<%=awspath%><%=pin.image%>" alt="pin image">
+                    <img class="card-img" src="<%=pin.image%>" alt="pin image">
                   <%}%>
                 </div>
                 <div class="card-block hoverable">

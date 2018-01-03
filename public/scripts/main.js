@@ -4,4 +4,9 @@ $(function() {
         on: 'hover'
     });
     
+    // Tooltips Initialization
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+    
 });

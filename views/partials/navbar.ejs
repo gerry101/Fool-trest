@@ -10,6 +10,11 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav mr-0">
                 <%if(currentUser) {%>
+                    <li class="nav-item mr-2 mt-1">
+                        <a href="/pin/new" class="nav-link">
+                            <i class="fa fa-plus" data-toggle="tooltip" data-placement="top" title="New fool-pin" aria-hidden="true"></i> 
+                        </a>
+                    </li>  
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img id="user-img" src="<%=currentUser.image%>" alt="user image">
@@ -19,7 +24,7 @@
                             <p><a href="https://twitter.com/<%=currentUser.username%>" target="_blank" class="dropdown-item">Twitter</a></p>
                             <p><a href="/logout">Logout</a></p>
                         </div>
-                    </li>   
+                    </li>  
                 <%} else {%>
                     <li class="nav-item">
                         <a href="/auth/twitter" class="btn btn-info btn-sm"><span class="fa fa-twitter"></span> Twitter</a>

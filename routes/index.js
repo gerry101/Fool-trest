@@ -5,16 +5,24 @@ var User       = require('../models/user'),
     express    = require('express'),
     router     = express.Router();
 
+// Landing page route
 router.get('/', function(req, res) {
+   res.render('landing');
+});
+
+// Homepage route
+router.get('/pins', function(req, res) {
+   // Find all pins from database
    Pin.find({}).populate('author').populate('likes').sort({date: -1}).exec(function(err, pins) {
        if(err) {
            console.log('error');
            return res.redirect('/');
        }
         res.render('home', {pins: pins});
-   }); 
+   });  
 });
 
+// Profile route
 router.get('/profile', middleware.isLoggedIn, function(req, res) {
     User.findById(req.user._id).populate('pins').exec(function(err, user) {
        if(err) {
@@ -26,6 +34,7 @@ router.get('/profile', middleware.isLoggedIn, function(req, res) {
     });
 });
 
+// User profile route
 router.get('/profile/:id', function(req, res) {
    var userId = req.params.id;
    User.findById(userId).populate('pins').exec(function(err, user) {
@@ -38,15 +47,17 @@ router.get('/profile/:id', function(req, res) {
    });
 });
 
+// Twitter auth route
 router.get('/auth/twitter',
   passport.authenticate('twitter'));
 
 router.get('/auth/twitter/callback', 
-  passport.authenticate('twitter', { failureRedirect: '/login' }),
+  passport.authenticate('twitter', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/pins');
 });
 
+// Logout route
 router.get('/logout', function(req, res) {
    req.logout();
    res.redirect('/');
