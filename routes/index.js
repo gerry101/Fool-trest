@@ -15,7 +15,6 @@ router.get('/pins', function(req, res) {
    // Find all pins from database
    Pin.find({}).populate('author').populate('likes').sort({date: -1}).exec(function(err, pins) {
        if(err) {
-           console.log('error');
            return res.redirect('/');
        }
         res.render('home', {pins: pins});
@@ -26,7 +25,6 @@ router.get('/pins', function(req, res) {
 router.get('/profile', middleware.isLoggedIn, function(req, res) {
     User.findById(req.user._id).populate('pins').exec(function(err, user) {
        if(err) {
-           console.log('error');
            return res.redirect('/');
        }
         var userPins = user.pins;
@@ -39,7 +37,6 @@ router.get('/profile/:id', function(req, res) {
    var userId = req.params.id;
    User.findById(userId).populate('pins').exec(function(err, user) {
       if(err) {
-          console.log('error');
           return res.redirect('/');
       }
        var userPins = user.pins;
